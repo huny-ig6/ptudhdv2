@@ -55,6 +55,7 @@
       <xs:element name="authorId" type="xs:positiveInteger" minOccurs="0"/>
       <xs:element name="publishedYear" type="xs:gYear" minOccurs="0"/>
       <xs:element name="price" type="bs:Money"/>
+      <xs:element name="source" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -65,7 +66,6 @@
       <xs:element name="message" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
-
   <xs:element name="Book" type="bs:Book"/>
   <xs:element name="ErrorDetail" type="bs:ErrorDetail"/>
 </xs:schema>
