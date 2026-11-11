@@ -13,6 +13,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>vn.edu.bookstore</groupId>
+      <artifactId>bookstore-contracts</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-webmvc</artifactId>
     </dependency>
@@ -28,13 +33,6 @@
     <dependency>
       <groupId>com.sun.xml.ws</groupId>
       <artifactId>jaxws-rt</artifactId>
-    </dependency>
-
-    <!-- HỢP ĐỒNG KHÁCH HÀNG (TH1-2) -->
-    <dependency>
-      <groupId>vn.edu.bookstore</groupId>
-      <artifactId>bookstore-contracts</artifactId>
-      <version>${project.version}</version>
     </dependency>
 
     <dependency>

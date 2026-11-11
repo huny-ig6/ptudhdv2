@@ -15,16 +15,20 @@ import vn.edu.bookstore.legacy.adapter.soap.generated.BookCatalogService;
 @Configuration
 public class LegacySoapClientConfig {
 
+    /** Thuộc tính timeout của Metro (Jakarta XML WS RI), đơn vị mili giây. */
+    static final String CONNECT_TIMEOUT = "com.sun.xml.ws.connect.timeout";
+    static final String REQUEST_TIMEOUT = "com.sun.xml.ws.request.timeout";
+
     @Bean
     BookCatalogPortType bookCatalogPort(LegacySoapProperties props) {
-        // TH1-4: tạo proxy từ WSDL nằm trong classpath
+        // TH1-4: tạo proxy từ WSDL nằm trong classpath (không tải WSDL qua mạng khi khởi động)
         URL wsdl = LegacySoapClientConfig.class.getResource("/wsdl/BookCatalogService.wsdl");
         BookCatalogPortType port = new BookCatalogService(wsdl).getBookCatalogPort();
 
         Map<String, Object> ctx = ((BindingProvider) port).getRequestContext();
         ctx.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, props.endpoint());
-        ctx.put("com.sun.xml.ws.connect.timeout", (int) props.connectTimeout().toMillis());
-        ctx.put("com.sun.xml.ws.request.timeout", (int) props.readTimeout().toMillis());
+        ctx.put(CONNECT_TIMEOUT, (int) props.connectTimeout().toMillis());
+        ctx.put(REQUEST_TIMEOUT, (int) props.readTimeout().toMillis());
 
         // TH1-5: gắn handler ghi log thông điệp SOAP vào/ra
         if (props.logMessages()) {

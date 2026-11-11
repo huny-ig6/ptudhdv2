@@ -1,0 +1,15 @@
+services:
+  catalog-db:
+    image: postgres:17-alpine
+    container_name: bookstore-catalog-db-1
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: catalog
+      POSTGRES_USER: catalog
+      POSTGRES_PASSWORD: catalog-lab
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U catalog -d catalog"]
+      interval: 2s
+      timeout: 2s
+      retries: 10

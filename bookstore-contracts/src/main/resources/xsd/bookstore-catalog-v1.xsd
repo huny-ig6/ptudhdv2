@@ -10,10 +10,10 @@
            elementFormDefault="qualified"
            version="1.0">
 
-  <!-- TODO(TH1-2): ISBN-13 bắt đầu bằng 978 hoặc 979, tổng 13 chữ số → thêm xs:pattern -->
+  <!-- ISBN-13 bắt đầu bằng 978 hoặc 979, tổng 13 chữ số -->
   <xs:simpleType name="Isbn13">
     <xs:restriction base="xs:string">
-        <xs:pattern value="97[89][0-9]{10}"/>
+      <xs:pattern value="97[89][0-9]{10}"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -24,12 +24,12 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <!-- TODO(TH1-2): số tiền không âm, tối đa 2 chữ số thập phân (minInclusive, fractionDigits) -->
+  <!-- Số tiền: không âm, tối đa 2 chữ số thập phân (Java: BigDecimal, không dùng double) -->
   <xs:simpleType name="Amount">
     <xs:restriction base="xs:decimal">
-        <xs:minInclusive value="0"/>
-        <xs:fractionDigits value="2"/>
-        <xs:totalDigits value="15"/>
+      <xs:minInclusive value="0"/>
+      <xs:fractionDigits value="2"/>
+      <xs:totalDigits value="15"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -55,7 +55,6 @@
       <xs:element name="authorId" type="xs:positiveInteger" minOccurs="0"/>
       <xs:element name="publishedYear" type="xs:gYear" minOccurs="0"/>
       <xs:element name="price" type="bs:Money"/>
-      <xs:element name="source" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -66,6 +65,7 @@
       <xs:element name="message" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
+
   <xs:element name="Book" type="bs:Book"/>
   <xs:element name="ErrorDetail" type="bs:ErrorDetail"/>
 </xs:schema>
