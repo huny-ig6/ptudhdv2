@@ -15,6 +15,7 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
+      # TODO(TH2-8): đẩy nhánh lên GitHub, mở PR và xác nhận job này xanh (runner ubuntu-latest có sẵn Docker cho Testcontainers)
       - name: Build và kiểm thử (gồm Testcontainers nếu có)
         run: |
           chmod +x mvnw
